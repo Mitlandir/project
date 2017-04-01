@@ -18,6 +18,8 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String email;
+
     @OneToOne(mappedBy = "client")
     private Transactionrequest transactionrequest;
 
@@ -26,7 +28,6 @@ public class Client implements Serializable {
 
     @OneToMany(mappedBy = "client")
     private List<Transactionoffer> transactionoffers;
-
 
     public Client() {
     }
@@ -37,6 +38,14 @@ public class Client implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Transactionrequest getTransactionrequest() {
@@ -63,7 +72,6 @@ public class Client implements Serializable {
         this.transactionoffers = transactionoffers;
     }
 
-
     public void purge() {
         this.setCompletedtransactions(null);
         this.setTransactionoffers(null);
@@ -79,5 +87,6 @@ public class Client implements Serializable {
         }
         this.getTransactionrequest().prune();
     }
+
 
 }

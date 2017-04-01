@@ -17,6 +17,8 @@ public class Exchanger implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String name;
+
     @OneToMany(mappedBy = "exchanger")
     private List<Completedtransaction> completedtransactions;
 
@@ -25,7 +27,6 @@ public class Exchanger implements Serializable {
 
     @OneToMany(mappedBy = "exchanger")
     private List<Clerk> clerks;
-
 
     public Exchanger() {
     }
@@ -36,6 +37,14 @@ public class Exchanger implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Completedtransaction> getCompletedtransactions() {
@@ -61,7 +70,6 @@ public class Exchanger implements Serializable {
     public void setClerks(List<Clerk> clerks) {
         this.clerks = clerks;
     }
-
 
     public void purge() {
         this.setCompletedtransactions(null);
